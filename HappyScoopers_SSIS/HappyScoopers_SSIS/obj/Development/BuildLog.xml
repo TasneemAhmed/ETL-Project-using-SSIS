@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>HappyScoopers_SSIS</Name>
-    <LastWriteTime>2022-04-23T15:58:09.7161218Z</LastWriteTime>
+    <LastWriteTime>2022-04-23T21:39:58.2751454Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>HappyScoopers_Load.dtsx</Name>
-      <LastWriteTime>2022-04-23T15:58:09.7004998Z</LastWriteTime>
+      <LastWriteTime>2022-04-23T21:39:48.0390291Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
