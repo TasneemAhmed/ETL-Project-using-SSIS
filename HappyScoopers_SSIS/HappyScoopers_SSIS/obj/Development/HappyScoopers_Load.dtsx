@@ -11,10 +11,22 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="HappyScoopers_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{7E2A5395-B044-473A-A75C-10C288E27EB7}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{3D3B44A1-2ADC-4FD3-AF93-C2F561F3DF6F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="&quot;F&quot; : full load , &quot;I&quot;: incremental load"
+      DTS:DTSID="{7D50168A-F71B-4149-8CE5-65D56C22231C}"
+      DTS:ObjectName="LoadType">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">I</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -33,15 +45,6 @@
       DTS:ObjectName="LoadDate">
       <DTS:VariableValue
         DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{C3EBA55A-230E-48F6-AFE2-086A67FA3AED}"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="LoadType">
-      <DTS:VariableValue
-        DTS:DataType="8">F</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -78,6 +81,852 @@
         <ExpressionTask
           Expression="@[User::LoadDate]= GETDATE()" />
       </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Customer dimention"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{629caa11-b912-48b9-9706-6fe98932a377}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Customer dimention">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\DF Load Staging Table"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{bbc1cb78-5244-4d2d-92c6-85654aae0c31}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DF Load Staging Table">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Staging_Customer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[HappyScoopers_DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[_Source Key]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="_Source Key"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_Source Key]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[_Source Key]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[First Name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="First Name"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[First Name]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[First Name]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Last Name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Last Name"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Last Name]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last Name]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Full Name]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Full Name"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full Name]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full Name]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Title]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="Title"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Delivery Location Key]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Delivery Location Key"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Location Key]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Location Key]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Billing Location Key]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Billing Location Key"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Billing Location Key]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Location Key]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Phone Number]"
+                          cachedDataType="wstr"
+                          cachedLength="24"
+                          cachedName="Phone Number"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone Number]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone Number]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Email]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="Email"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Customer Modified Date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Customer Modified Date"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer Modified Date]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Delivery Addr Modified Date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Delivery Addr Modified Date"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Addr Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Addr Modified Date]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Billing Addr Modified Date]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Billing Addr Modified Date"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Billing Addr Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Addr Modified Date]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valid From]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid From"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid From]" />
+                        <inputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Valid To]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Valid To"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid To]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer Key]"
+                          dataType="i4"
+                          name="Customer Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[_Source Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="_Source Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="100"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="100"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Full Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="30"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="Delivery Location Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Billing Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="Billing Location Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone Number]"
+                          dataType="wstr"
+                          length="24"
+                          name="Phone Number" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Customer Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Delivery Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Delivery Addr Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Billing Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Billing Addr Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">EXEC Load_StagingCustomer ?, ?
+WITH RESULT SETS
+(
+    (
+      	[_Source Key] [nvarchar](50) ,
+	[First Name] [nvarchar](100) ,
+	[Last Name] [nvarchar](100) ,
+	[Full Name] [nvarchar](50) ,
+	[Title] [nvarchar](30) ,
+	[Delivery Location Key] [nvarchar](50) ,
+	[Billing Location Key] [nvarchar](50) ,
+	[Phone Number] [nvarchar](24) ,
+	[Email] [nvarchar](100) NULL,
+	[Customer Modified Date] [datetime] ,
+	[Delivery Addr Modified Date] [datetime] ,
+	[Billing Addr Modified Date] [datetime] ,
+	[Valid From] [datetime] ,
+	[Valid To] [datetime] 
+
+    )
+);</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"@LastLoadDate:Input",{98F18A93-8DD9-4EF3-9EE3-DB3445523EF3};"@NewLoadDate:Input",{26EB1684-332C-4A7F-B825-63E8F66B731B};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="{5A6D07DA-E013-48EE-BACD-4956EB5A510C}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[HappyScoopers_Demo]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[_Source Key]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[_Source Key]"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[_Source Key]"
+                          name="_Source Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[First Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[First Name]"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[First Name]"
+                          name="First Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Last Name]"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Last Name]"
+                          name="Last Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full Name]"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full Name]"
+                          name="Full Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          length="30"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                          name="Title"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Location Key]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Delivery Location Key]"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Location Key]"
+                          name="Delivery Location Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Location Key]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Billing Location Key]"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Location Key]"
+                          name="Billing Location Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone Number]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone Number]"
+                          length="24"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone Number]"
+                          name="Phone Number"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Email]"
+                          name="Email"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer Modified Date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Customer Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Customer Modified Date]"
+                          name="Customer Modified Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Delivery Addr Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Delivery Addr Modified Date]"
+                          name="Delivery Addr Modified Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Billing Addr Modified Date]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Billing Addr Modified Date]"
+                          name="Billing Addr Modified Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valid From]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid From]"
+                          name="Valid From"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valid To]"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Valid To]"
+                          name="Valid To"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[_Source Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="_Source Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[First Name]"
+                          dataType="wstr"
+                          length="100"
+                          name="First Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Last Name]"
+                          dataType="wstr"
+                          length="100"
+                          name="Last Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Full Name" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="30"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Delivery Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="Delivery Location Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Billing Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          name="Billing Location Key" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone Number]"
+                          dataType="wstr"
+                          length="24"
+                          name="Phone Number" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Customer Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Customer Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Delivery Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Delivery Addr Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Billing Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          name="Billing Addr Modified Date" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valid From]"
+                          dataType="dbTimeStamp"
+                          name="Valid From" />
+                        <externalMetadataColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Valid To]"
+                          dataType="dbTimeStamp"
+                          name="Valid To" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[_Source Key]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[_Source Key]"
+                          name="_Source Key" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[First Name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[First Name]"
+                          name="First Name" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Last Name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Last Name]"
+                          name="Last Name" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full Name]"
+                          name="Full Name" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          name="Title" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Delivery Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Delivery Location Key]"
+                          name="Delivery Location Key" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Billing Location Key]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Billing Location Key]"
+                          name="Billing Location Key" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone Number]"
+                          dataType="wstr"
+                          length="24"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone Number]"
+                          name="Phone Number" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Email]"
+                          name="Email" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Customer Modified Date]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Customer Modified Date]"
+                          name="Customer Modified Date" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Delivery Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Delivery Addr Modified Date]"
+                          name="Delivery Addr Modified Date" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Billing Addr Modified Date]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Billing Addr Modified Date]"
+                          name="Billing Addr Modified Date" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valid From]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valid From]"
+                          name="Valid From" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valid To]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Valid To]"
+                          name="Valid To" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load Customer dimention\DF Load Staging Table.Paths[OLE DB Source Output]"
+                  endId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\Set Table name"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{90dfbb8e-4773-4312-bcb8-3c50e6482f28}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set Table name"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TableName] = &quot;Dim_Customer&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\SQL Get Date of previous load"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5eab0cfa-11b0-4070-9996-12d9eebbdf15}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Get Date of previous load"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}"
+              SQLTask:SqlStatementSource="EXEC [int].[Get_LastLoadedDate] ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LoadDate" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\SQL transfer from staging to dimention"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bbf67439-51e6-4ff0-9844-10b7c0197f81}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL transfer from staging to dimention"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}"
+              SQLTask:SqlStatementSource="EXEC Load_DimCustomer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\SQL Truncate Staging Table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cdbe4d2f-f6db-4099-8305-9511418dd322}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Truncate Staging Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Staging_Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Customer dimention\SQL Update Lieage table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{631cc898-9a3a-40b1-92cb-ec68cb5602d8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Update Lieage table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}"
+              SQLTask:SqlStatementSource="EXEC [int].Get_LineageKey ?,?,?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::LieageKey" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::LoadType"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::TableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::LoadDate"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer dimention.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1979121a-bdda-4e42-82de-8bf99ebacd6e}"
+          DTS:From="Package\Load Customer dimention\SQL Update Lieage table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Customer dimention\SQL Truncate Staging Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer dimention.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{f6041a51-eaac-43a8-be78-0b8197848a36}"
+          DTS:From="Package\Load Customer dimention\SQL Truncate Staging Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load Customer dimention\SQL Get Date of previous load" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer dimention.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{691d9561-a979-40ed-8be4-3a05dd48f6e8}"
+          DTS:From="Package\Load Customer dimention\SQL Get Date of previous load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load Customer dimention\DF Load Staging Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer dimention.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{d8cff7f0-63e0-4d66-9da7-8b2469841257}"
+          DTS:From="Package\Load Customer dimention\DF Load Staging Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load Customer dimention\SQL transfer from staging to dimention" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Customer dimention.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{872edeb1-ee63-4312-b050-640b15477474}"
+          DTS:From="Package\Load Customer dimention\Set Table name"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Load Customer dimention\SQL Update Lieage table" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load Location dimention"
@@ -1113,7 +1962,7 @@ WITH RESULT SETS
                 SQLTask:DtsVariableName="User::LieageKey" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="User::LoadType"
+                SQLTask:DtsVariableName="$Package::LoadType"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
@@ -2089,7 +2938,7 @@ WITH RESULT SETS
                 SQLTask:DtsVariableName="User::LieageKey" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="User::LoadType"
+                SQLTask:DtsVariableName="$Package::LoadType"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
@@ -2170,6 +3019,14 @@ WITH RESULT SETS
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Load Location dimention" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E38E9DC-8A4F-438B-9C21-CD004379D4CD}"
+      DTS:From="Package\Load Location dimention"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Customer dimention" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2182,7 +3039,7 @@ WITH RESULT SETS
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="217.6,41.6"
           Id="Package\EXP Get Date of Current Load"
@@ -2520,6 +3377,181 @@ WITH RESULT SETS
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="215.2,45.6"
+          Id="Package\Load Customer dimention\DF Load Staging Table"
+          TopLeft="35.3000000170309,357.576473360573" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load Customer dimention\Set Table name"
+          TopLeft="71.5317519757222,55.6307196573128" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\Load Customer dimention\SQL Get Date of previous load"
+          TopLeft="35.3634921922982,290.550003236182" />
+        <NodeLayout
+          Size="262.4,41.6"
+          Id="Package\Load Customer dimention\SQL transfer from staging to dimention"
+          TopLeft="15.1333331005923,441.34248857324" />
+        <NodeLayout
+          Size="219.2,42.4"
+          Id="Package\Load Customer dimention\SQL Truncate Staging Table"
+          TopLeft="35.1428572644994,205.73594975631" />
+        <NodeLayout
+          Size="194.4,41.6"
+          Id="Package\Load Customer dimention\SQL Update Lieage table"
+          TopLeft="47.1587304850024,132.222223235111" />
+        <EdgeLayout
+          Id="Package\Load Customer dimention.PrecedenceConstraints[Constraint]"
+          TopLeft="144.550793874751,173.822223235111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.9137265211985"
+              Start="0,0"
+              End="0,24.4137265211985">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4137265211985" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer dimention.PrecedenceConstraints[Constraint 1]"
+          TopLeft="145.253174728399,248.13594975631">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4140534798716"
+              Start="0,0"
+              End="0,34.9140534798716">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9140534798716" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer dimention.PrecedenceConstraints[Constraint 2]"
+          TopLeft="144.331746104665,332.150003236182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.4264701243911"
+              Start="0,0"
+              End="0,17.9264701243911">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.9264701243911" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer dimention.PrecedenceConstraints[Constraint 3]"
+          TopLeft="144.616666558812,403.176473360573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.1660152126677"
+              Start="0,0"
+              End="0,30.6660152126677">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.6660152126677" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Customer dimention.PrecedenceConstraints[Constraint 4]"
+          TopLeft="145.945241230362,97.2307196573128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.9915035777987"
+              Start="0,0"
+              End="0,27.4915035777987">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.4915035777987" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="446.4,583.2"
+          Size="446.4,626.4"
+          Id="Package\Load Customer dimention"
+          TopLeft="769.642870249797,759.000006381203" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="1182.7238258644,710.635294451305">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189.880955614606,48.3647119298984"
+              Start="0,0"
+              End="-189.880955614606,40.8647119298984">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.1823559649492" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.1823559649492"
+                    Point2="0,24.1823559649492"
+                    Point3="-4,24.1823559649492" />
+                  <mssgle:LineSegment
+                    End="-185.880955614606,24.1823559649492" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-185.880955614606,24.1823559649492"
+                    Point2="-189.880955614606,24.1823559649492"
+                    Point3="-189.880955614606,28.1823559649492" />
+                  <mssgle:LineSegment
+                    End="-189.880955614606,40.8647119298984" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2630,6 +3662,77 @@ WITH RESULT SETS
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Location dimention\DF Load Staging Table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Customer dimention\DF Load Staging Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source"
+          TopLeft="402,9" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination"
+          TopLeft="417,124" />
+        <EdgeLayout
+          Id="Package\Load Customer dimention\DF Load Staging Table.Paths[OLE DB Source Output]"
+          TopLeft="476.8,50.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.4,73.4"
+              Start="0,0"
+              End="25.4,65.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.7"
+                    Point2="0,36.7"
+                    Point3="4,36.7" />
+                  <mssgle:LineSegment
+                    End="21.4,36.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.4,36.7"
+                    Point2="25.4,36.7"
+                    Point3="25.4,40.7" />
+                  <mssgle:LineSegment
+                    End="25.4,65.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Customer dimention\DF Load Staging Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Customer dimention\DF Load Staging Table\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
