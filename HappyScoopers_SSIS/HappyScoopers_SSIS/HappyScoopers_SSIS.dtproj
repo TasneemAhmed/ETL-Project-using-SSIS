@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-ANCBGUO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAne5R37YO606RGjS83YvtcwAAAAACAAAAAAAQZgAAAAEAACAAAACVd1Vzs8DYk/IhCPGKP8zhpDwRMPTtu4qHb681bO0OJAAAAAAOgAAAAAIAACAAAABDg3FtKl/Pyv7lLPaC91awONR+nD340akoLru4Dm1bOJAAAAAAdKAEdiCpy8cse54SWZT547t7yrJgpTxqXsp7CKrfdxZ2w8GWS2t4rtS/uB/7P7sLC7aVGAxeI2TA2xFAmOCs7NQmAHi2K+noMq0U7/y0+cfhjxmNINRmo/unGhd+tAzEQ1aQTCNNebt2ftInWbr3D5NnZIRhGROCbDT5nApefb3o6cRl9VhLvsXElLjIFiRAAAAA8e8C4gwIPkkBdfoR2Z6Z2zeZf1ZlgbM/IJEcEGk9pa25xXNnehsbnDzhIhoMPDlUiaujE3+8yhR/0ELJ0zLUQQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAne5R37YO606RGjS83YvtcwAAAAACAAAAAAAQZgAAAAEAACAAAAD1/w8gnUTkVHVpGBi3JDFOpJanKl5fTfubz2MTItbz3AAAAAAOgAAAAAIAACAAAADIs/Thzxve3vsoBP8GOvtnWZeGnlFZ8eW3uxQ3Iz6+OpAAAAA4i+5AKkwG3Xxl98GAWLdJY7+6t4aIDHY2rf6yaIQbyUgO3CpcwdYE+WcYT0niKoMJzEMIuu2n7R7+EdxK2OHkxPAQ4SjbIPD5uLJk+ypexYOTESljiGbBLLi+NrRWOaKg8amvCr0p55fc0+IBUDJO0xlUfHtfOpknkiaAuYYDXYrwzpaUuYVghThslHI0gE5AAAAAmJZuXrLjkrY9k9e2I8FNiarDqHvWKPjxzv76INOrC04p97e+ApHhkeWi5r13JeH3bY/9sGAVlde2/BSzTjAEuQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -342,16 +342,44 @@
                 <SSIS:Property SSIS:Name="Name">HappyScoopers_Load</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">31</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3D3B44A1-2ADC-4FD3-AF93-C2F561F3DF6F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0A8E938E-94C9-4826-9CF1-21A7D4959202}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="DateDim_From">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{593FDCB1-8244-4852-9995-30DD0B69BCD3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">2000-01-01T00:00:00</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">16</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="DateDim_To">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{4FBC9636-9994-4A73-B720-183AF8985127}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">2035-01-01T00:00:00</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">16</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="LoadType">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{7D50168A-F71B-4149-8CE5-65D56C22231C}</SSIS:Property>

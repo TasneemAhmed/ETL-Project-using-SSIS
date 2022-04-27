@@ -11,11 +11,29 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="HappyScoopers_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{3D3B44A1-2ADC-4FD3-AF93-C2F561F3DF6F}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{9241434D-B025-4659-BEF4-F91DBD7CB7DE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{593FDCB1-8244-4852-9995-30DD0B69BCD3}"
+      DTS:ObjectName="DateDim_From">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">1/1/2000</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{4FBC9636-9994-4A73-B720-183AF8985127}"
+      DTS:ObjectName="DateDim_To">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">1/1/2035</DTS:Property>
+    </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
@@ -3001,6 +3019,38 @@ WITH RESULT SETS
           DTS:To="Package\Load Product dimention\SQL Update Lieage table" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Load Date dimention"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{BDD6929F-D4AE-4748-B767-8A874E8B3321}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Load Date dimention"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Disable">@[$Package::LoadType] =="I"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{824E8495-AEB3-4C7B-A2CD-CD40FC5D0867}"
+          SQLTask:SqlStatementSource="EXEC [dbo].[Load_DimDate] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DateDim_From"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::DateDim_To"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -3027,6 +3077,14 @@ WITH RESULT SETS
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Load Customer dimention" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA7394D2-9902-43B7-8703-026060B447D5}"
+      DTS:From="Package\EXP Get Date of Current Load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL Load Date dimention" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -3544,6 +3602,44 @@ WITH RESULT SETS
                     Point3="-189.880955614606,28.1823559649492" />
                   <mssgle:LineSegment
                     End="-189.880955614606,40.8647119298984" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\SQL Load Date dimention"
+          TopLeft="779.792220155472,45.7967918923382" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="630.926991179525,21.3019607776406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="148.865228975947,45.2948311146976"
+              Start="0,0"
+              End="141.365228975947,45.2948311146976">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="70.4326144879737,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70.4326144879737,0"
+                    Point2="74.4326144879737,0"
+                    Point3="74.4326144879737,4" />
+                  <mssgle:LineSegment
+                    End="74.4326144879737,41.2948311146976" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.4326144879737,41.2948311146976"
+                    Point2="74.4326144879737,45.2948311146976"
+                    Point3="78.4326144879737,45.2948311146976" />
+                  <mssgle:LineSegment
+                    End="141.365228975947,45.2948311146976" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
