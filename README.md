@@ -14,4 +14,7 @@ Steps made for loading data from source to Datawarehouse:
 ![ssis](https://user-images.githubusercontent.com/49993791/166066840-5ff2014c-065c-4762-8ecf-422ead23e97e.PNG)
 
 
-***Hint: Dataset needed first to make a project here [Dataset](https://github.com/TasneemAhmed/ETL-Project-using-SSIS/tree/master/sql-server-platform-designing-data-warehouse/03/demos/demos/PREREQUISITE%20-%20Creating%20the%20needed%20databases)***
+***Hint1: Dataset needed first to make a project here [Dataset](https://github.com/TasneemAhmed/ETL-Project-using-SSIS/tree/master/sql-server-platform-designing-data-warehouse/03/demos/demos/PREREQUISITE%20-%20Creating%20the%20needed%20databases)***
+
+
+***Hint2: [Course Tutorial: slides & demos](https://github.com/TasneemAhmed/ETL-Project-using-SSIS/tree/master/sql-server-platform-designing-data-warehouse/03/demos/demos/PREREQUISITE%20-%20Creating%20the%20needed%20databases)***
