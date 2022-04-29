@@ -10,6 +10,8 @@ Steps made for loading data from source to Datawarehouse:
 4. Loading into Staging table between two specific dates.
 5. Transfer data from staging table into dimention.
 
-***Hint: Dataset needed first to make a project in this path (ETL-Project-using-SSIS/sql-server-platform-designing-data-warehouse/03/demos/demos/PREREQUISITE)***
-
+**Part of HappyScoopers_SSIS projest**
 ![ssis](https://user-images.githubusercontent.com/49993791/166066840-5ff2014c-065c-4762-8ecf-422ead23e97e.PNG)
+
+
+***Hint: Dataset needed first to make a project in this path (ETL-Project-using-SSIS/sql-server-platform-designing-data-warehouse/03/demos/demos/PREREQUISITE)***
