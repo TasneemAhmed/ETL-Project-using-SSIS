@@ -9,3 +9,5 @@ I manage this with following steps:
 3.Truncate staging table (delete data itself from table to able load new data)
 4. Loading into Stage table between two specific dates
 5. Load into dimention table
+
+![ssis](https://user-images.githubusercontent.com/49993791/166066840-5ff2014c-065c-4762-8ecf-422ead23e97e.PNG)
