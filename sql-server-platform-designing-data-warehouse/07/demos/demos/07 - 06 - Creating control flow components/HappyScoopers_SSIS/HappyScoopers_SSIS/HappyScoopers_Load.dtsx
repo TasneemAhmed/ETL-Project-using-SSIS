@@ -1,0 +1,98 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/4/2019 8:05:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BANANA"
+  DTS:CreatorName="BANANA\anavo"
+  DTS:DTSID="{B1222CB7-7FF6-428B-9345-465B56C07F84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="HappyScoopers_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{EAD4DED0-15BC-472A-9650-EAB6857C6BDB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HappyScoopers_Demo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E3209B77-8912-43C3-A646-5EFEC769A0C0}"
+      DTS:ObjectName="HappyScoopers_Demo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BANANA;Initial Catalog=HappyScoopers_Demo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HappyScoopers_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C69C744D-55A4-46C0-9E98-B0E0EA8AB487}"
+      DTS:ObjectName="HappyScoopers_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BANANA;Initial Catalog=HappyScoopers_DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Parameter that sets the type of load: F = full load; I = incremental load"
+      DTS:DTSID="{2C2B1C00-8155-44C5-A5B7-D177F48E19B9}"
+      DTS:ObjectName="LoadType">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">I</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL Truncate Staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ded8edd9-adf6-4206-9221-db48c8b9bc9e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Truncate Staging"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C69C744D-55A4-46C0-9E98-B0E0EA8AB487}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Staging_Product" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,44"
+          Id="Package\SQL Truncate Staging"
+          TopLeft="113.099774377764,157.728478341431" />
+        <AnnotationLayout
+          Text="Save the current load date&#xA;Insert new row in the Lineage table&#xA;Truncate the staging table&#xA;Populate the staging table&#xA;Transfer data from staging to dimension&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="240.8,120"
+          Id="2521f56d-d88e-4792-8d2a-2d3c3042f2a7"
+          TopLeft="80.0000013623919,17.7411765735455" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

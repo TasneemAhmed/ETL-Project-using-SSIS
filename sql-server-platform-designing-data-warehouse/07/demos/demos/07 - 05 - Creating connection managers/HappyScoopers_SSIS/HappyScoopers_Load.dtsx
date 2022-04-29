@@ -1,0 +1,62 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/4/2019 8:05:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BANANA"
+  DTS:CreatorName="BANANA\anavo"
+  DTS:DTSID="{B1222CB7-7FF6-428B-9345-465B56C07F84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="HappyScoopers_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{DFDCEB51-44A9-40DB-B32E-299D5328AA97}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HappyScoopers_Demo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E3209B77-8912-43C3-A646-5EFEC769A0C0}"
+      DTS:ObjectName="HappyScoopers_Demo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BANANA;Initial Catalog=HappyScoopers_Demo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HappyScoopers_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C69C744D-55A4-46C0-9E98-B0E0EA8AB487}"
+      DTS:ObjectName="HappyScoopers_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BANANA;Initial Catalog=HappyScoopers_DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Parameter that sets the type of load: F = full load; I = incremental load"
+      DTS:DTSID="{2C2B1C00-8155-44C5-A5B7-D177F48E19B9}"
+      DTS:ObjectName="LoadType">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">I</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables />
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

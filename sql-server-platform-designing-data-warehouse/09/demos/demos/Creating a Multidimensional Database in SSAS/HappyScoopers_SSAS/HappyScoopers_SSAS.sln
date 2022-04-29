@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "HappyScoopers_SSAS", "HappyScoopers_SSAS\HappyScoopers_SSAS.dwproj", "{4EE45DD6-F20F-4C4F-B0C0-F055071FC56F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EE45DD6-F20F-4C4F-B0C0-F055071FC56F}.Development|Default.ActiveCfg = Development
+		{4EE45DD6-F20F-4C4F-B0C0-F055071FC56F}.Development|Default.Build.0 = Development
+		{4EE45DD6-F20F-4C4F-B0C0-F055071FC56F}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65BBDF4A-DF34-409C-A7F9-B7624D356492}
+	EndGlobalSection
+EndGlobal

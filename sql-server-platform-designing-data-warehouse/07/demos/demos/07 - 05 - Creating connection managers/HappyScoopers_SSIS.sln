@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "HappyScoopers_SSIS", "HappyScoopers_SSIS\HappyScoopers_SSIS.dtproj", "{BBD25BEC-159A-40E2-AF45-D6595C0D0E2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBD25BEC-159A-40E2-AF45-D6595C0D0E2E}.Development|Default.ActiveCfg = Development
+		{BBD25BEC-159A-40E2-AF45-D6595C0D0E2E}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EEEACC6-0E52-409A-802A-3DE6405EE0D7}
+	EndGlobalSection
+EndGlobal
